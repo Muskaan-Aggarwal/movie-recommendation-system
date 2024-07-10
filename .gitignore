@@ -1,0 +1,8 @@
+# Load the movie ratings data
+ratings = pd.read_csv('ratings.csv')
+
+# Create a pivot table of user-item ratings
+ratings_pivot = ratings.pivot(index='userId', columns='movieId', values='rating').fillna(0)
+
+# Convert the pivot table to a sparse matrix
+X = csr_matrix(ratings_pivot.values)
